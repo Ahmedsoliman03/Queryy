@@ -6,7 +6,7 @@ import Layout from './components/Layout'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './components/Home'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 let routing = createBrowserRouter([
   {
@@ -15,7 +15,8 @@ let routing = createBrowserRouter([
     children: [
    
        {
-        path: "/home" , 
+        // path: "/home" , 
+        index: true ,
         element: (
             <Home />
         ),
@@ -24,11 +25,12 @@ let routing = createBrowserRouter([
   }
 ])
 function App() {
-
+const queryClient = new QueryClient() 
   return (
     <>
-    <QueryClientProvider client={QueryClient}>
+    <QueryClientProvider client={queryClient}>
  <RouterProvider router={routing}></RouterProvider>
+ <ReactQueryDevtools/>
  </QueryClientProvider>
     </>
   )
